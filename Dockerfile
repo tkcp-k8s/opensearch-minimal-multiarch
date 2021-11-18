@@ -37,7 +37,7 @@
 ########################### Stage 0 ########################
 FROM amazonlinux:2 AS linux_stage_0
 
-ARG UPSTREAM_VERSION=1.0.0
+ARG UPSTREAM_VERSION=1.1.0
 ARG UPSTREAM_BRANCH=main
 
 
