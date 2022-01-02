@@ -3,6 +3,8 @@ name: master-latest
 on:
   push:
     branches: [ main ]
+  schedule:
+    - cron: '0 3 * * *' # Scheduled runs every day at 3am UTC
 
 jobs:
   docker:
@@ -46,6 +48,7 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
+          pull: true # Pull new version of base image, always; avoid bit-rot
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest,ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ github.sha }}
           labels: |
