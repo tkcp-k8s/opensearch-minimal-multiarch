@@ -37,7 +37,7 @@
 ########################### Stage 0 ########################
 FROM amazonlinux:2 AS linux_stage_0
 
-ARG UPSTREAM_VERSION=1.1.0
+ARG UPSTREAM_VERSION=1.2.3
 ARG UPSTREAM_BRANCH=main
 
 
@@ -67,10 +67,8 @@ RUN tar -xzf /tmp/opensearch/opensearch.tgz -C $OPENSEARCH_HOME --strip-componen
 ADD opensearch-docker-entrypoint.sh $OPENSEARCH_HOME/
 
 # This comes straight from the repo for now
-ADD https://raw.githubusercontent.com/opensearch-project/opensearch-build/${UPSTREAM_BRANCH}/release/docker/config/opensearch/opensearch.yml $OPENSEARCH_HOME/config/
-ADD https://raw.githubusercontent.com/opensearch-project/opensearch-build/${UPSTREAM_BRANCH}/release/docker/config/opensearch/log4j2.properties $OPENSEARCH_DASHBOARDS_HOME/config/
-ADD https://raw.githubusercontent.com/opensearch-project/opensearch-build/${UPSTREAM_BRANCH}/release/docker/config/opensearch/opensearch.yml $OPENSEARCH_HOME/config/
-
+ADD https://raw.githubusercontent.com/opensearch-project/opensearch-build/${UPSTREAM_BRANCH}/docker/release/config/opensearch/log4j2.properties $OPENSEARCH_DASHBOARDS_HOME/config/
+ADD https://raw.githubusercontent.com/opensearch-project/opensearch-build/${UPSTREAM_BRANCH}/docker/release/config/opensearch/opensearch.yml $OPENSEARCH_HOME/config/
 # Make it executable, since it's coming over http.
 RUN chmod +x $OPENSEARCH_HOME/*.sh
 
